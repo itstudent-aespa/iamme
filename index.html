@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dave Carl Senador - Back-End Developer</title>
+  <style>
+    /* Root colors based on Tech & Futuristic palette */
+    :root {
+      --bg-color: #0F172A;
+      --primary-color: #22D3EE;
+      --secondary-color: #64748B;
+      --accent-color: #F4F4F4;
+      --skillbar-bg: #1E293B;
+      --skillbar-fill: linear-gradient(90deg, #22D3EE, #06B6D4);
+      --shadow-color: rgba(34, 211, 238, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--accent-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #0ea5e9; /* Slightly darker cyan */
+      text-decoration: underline;
+    }
+
+    header {
+      background-color: #14243e;
+      padding: 20px 0;
+      box-shadow: 0 2px 8px var(--shadow-color);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    nav a {
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: var(--accent-color);
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: var(--primary-color);
+      color: var(--bg-color);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 60px 20px;
+      flex-grow: 1;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    h1, h2 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--accent-color);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* Home Section */
+    #home {
+      background-color: #14243e;
+      border-radius: 12px;
+      padding: 50px 30px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      box-shadow: 0 8px 24px var(--shadow-color);
+    }
+
+    #home img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 0 15px var(--primary-color);
+      background: var(--bg-color);
+      flex-shrink: 0;
+    }
+
+    #home-text h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      color: var(--primary-color);
+    }
+
+    #home-text p {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    /* About Section */
+    #about {
+      background-color: #14243e;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px var(--shadow-color);
+    }
+
+    /* Skills Section */
+    #skills ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    #skills li {
+      margin-bottom: 20px;
+    }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+    }
+
+    .skill-bar {
+      background-color: var(--skillbar-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      height: 20px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: var(--skillbar-fill);
+      border-radius: 10px 0 0 10px;
+      transition: width 1s ease-in-out;
+    }
+
+    /* Projects Section */
+    #projects .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 24px;
+    }
+
+    .project {
+      background-color: #14243e;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 20px var(--shadow-color);
+      transition: transform 0.25s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px var(--shadow-color);
+    }
+
+    .project-img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);
+      background: var(--bg-color);
+      display: block;
+    }
+
+    .project h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .project p {
+      color: var(--accent-color);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .project a {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--primary-color);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    /* Contact Section */
+    #contact > p {
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+      color: var(--accent-color);
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    #contact .contact-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    #contact-info {
+      flex: 1 1 320px;
+      background-color: #14243e;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px var(--shadow-color);
+      color: var(--primary-color);
+    }
+
+    #contact-info h3 {
+      margin-bottom: 18px;
+      font-size: 1.4rem;
+    }
+
+    #contact-info p {
+      margin-bottom: 14px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    #contact-info a {
+      color: var(--primary-color);
+      word-break: break-word;
+    }
+
+    #contact form {
+      flex: 1 1 400px;
+      background-color: #14243e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px var(--shadow-color);
+    }
+
+    #contact label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 1rem;
+    }
+
+    #contact input, #contact textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 22px;
+      border: 2px solid var(--skillbar-bg);
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: var(--bg-color);
+      color: var(--accent-color);
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+    }
+
+    #contact input:focus, #contact textarea:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+
+    #contact button {
+      background-color: var(--primary-color);
+      color: var(--bg-color);
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+
+    #contact button:hover {
+      background-color: #0ea5e9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--secondary-color);
+      font-size: 0.9rem;
+      border-top: 1px solid #1e293b;
+      margin-top: 40px;
+      background-color: var(--bg-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+      #home {
+        flex-direction: column;
+        text-align: center;
+      }
+      #home img {
+        margin: 0 auto 24px auto;
+      }
+      #contact .contact-wrapper {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#skills">My Skills</a>
+      <a href="#projects">My Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Home -->
+    <section id="home">
+      <img src="jamjam.JFIF" alt="Dave Carl Senador" />
+      <div id="home-text">
+        <h1>Hello, I'm Dave Carl Senador</h1>
+        <p><strong>BACK-END DEVELOPER</strong></p>
+      </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Experienced back-end developer passionate about building robust, scalable server-side applications and APIs. I enjoy solving complex problems, optimizing performance, and ensuring data security. Always eager to learn new technologies and contribute to team success.
+      </p>
+    </section>
+
+    <!-- My Skills -->
+    <section id="skills">
+      <h2>My Skills</h2>
+      <ul>
+        <li>
+          <div class="skill-label">Node.js <span>85%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+        </li>
+        <li>
+          <div class="skill-label">Express.js <span>80%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
+        </li>
+        <li>
+          <div class="skill-label">MongoDB <span>75%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div>
+        </li>
+        <li>
+          <div class="skill-label">REST API Design <span>90%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- My Projects -->
+    <section id="projects">
+      <h2>My Projects</h2>
+      <div class="project-list">
+        <div class="project">
+          <img class="project-img" src="jamjam.JFIF" alt="Inventory Management API Screenshot" />
+          <h3>Inventory Management API</h3>
+          <p>A RESTful API for managing inventory, built with Node.js, Express, and MongoDB. Features authentication, CRUD operations, and data validation.</p>
+          <a href="https://github.com/davecarlsenador/inventory-api" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+        <div class="project">
+          <img class="project-img" src="jamjam.JFIF" alt="User Authentication Microservice Screenshot" />
+          <h3>User Authentication Microservice</h3>
+          <p>A secure authentication microservice using JWT, bcrypt, and Express.js. Handles user registration, login, and protected routes for any application.</p>
+          <a href="https://github.com/davecarlsenador/auth-microservice" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>You can reach me through the form below or via the following contact details:</p>
+      <div class="contact-wrapper">
+        <div id="contact-info">
+          <h3>Contact Information</h3>
+          <p><strong>Email:</strong> <a href="mailto:davecarl@gmail.com">davecarl@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:09876543210">09876543210</a></p>
+          <p><strong>Location:</strong> Lapu-lapu City</p>
+        </div>
+
+        <form action="mailto:davecarl@gmail.com" method="post" enctype="text/plain">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your email" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 Dave Carl Senador. All rights reserved.
+  </footer>
+
+</body>
+</html>
